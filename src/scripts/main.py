@@ -4,7 +4,8 @@ from transformers import AutoTokenizer
 import numpy as np
 from scipy.special import softmax
 
-print("hello")
+import sys
+
 
 MODEL = "cardiffnlp/twitter-roberta-base-offensive"
 
@@ -12,6 +13,7 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL)
 
 model = AutoModelForSequenceClassification.from_pretrained(MODEL)
 
+# text = sys.argv[1]
 text = "comment"
 encoded_input = tokenizer(text, return_tensors='pt')
 output = model(**encoded_input)
@@ -24,11 +26,6 @@ labels = {
 }
 
 if scores[0] > 0.5:
-  print(f"{labels[0]}\nConfidence:{scores[0]}")
+  print(f"not ok")
 else:
-  print(f"{labels[1]}\nConfidence:{scores[1]}")
-
-print("end...")
-
-
-# print("hello")
+  print("ok")

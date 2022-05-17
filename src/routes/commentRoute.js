@@ -3,7 +3,7 @@ const childProcess = require('child_process');
 const path = require('path');
 
 
-commentRouter.get('/post', (req, res) => {
+commentRouter.use('/post', (req, res) => {
     const commentText = req.body.data.commentText;
 
     const pyProcess = childProcess.spawn('python3', [path.join(__dirname + '/../../scripts/main.py'), commentText]);
